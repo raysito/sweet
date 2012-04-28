@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Roba.me | Delitos en un solo clic{% endblock %}
+{% block css %}<link rel="stylesheet" href="/static/css/style_faq.css">{% endblock %}
+{% block script %}
+	<script type="text/javascript" src="/static/js/custom.js"></script>
+{% endblock %}
+{% block body %}
+	<body>
+{% endblock %}
+{% block info_usuario %}
+	{% if userTrue %}
+		<div id="info-user">
+			<div id="user-name">Linus Torvals
+				<a href="#">Cerrar Sesión</a>
+			</div>
+		</div>
+	{% else %}
+		<div id="pre-sesion">
+			¿Tienes Cuenta?
+			<a href="#">Iniciar Sesión</a>
+		</div>
+		<form>
+			<label>Usuario</label>
+			<input class="textbox" type="text">
+			<label>Password</label>
+			<input class="textbox" type="password">
+			<input id="btn-sesion" class="btn-session" type="button" value="Iniciar Sesión">
+		</form>			
+	{% endif %}
+{% endblock %}
+{% block content-left %}
+	<ul id="ultimos-robos">
+		{% for comentario in comentarios %}
+		<li class="robo">
+			<span class="head-robo"><span class="fecha-robo">{{comentario.fecha}}</span> a las {{comentario.hora}} en <a class="lugar" href="#">{{comentario.ciudad}}</a></span>
+			<p class="denuncia">{{comentario.descripcion}}</p>
+		</li>
+		{% endfor %}
+	</ul>
+	<div id="mas"><span><a href="/mas/"><div id="icon-mas">más</div></a></span></div>
+{% endblock %}
+{% block content-right %}
+<h4>¿De qué trata roba.me?</h4>
+<p>
+Es un aplicativo web que permite registrar robos y mantenernos informados de sitios potencialmente peligrosos.
+</p>
+<h4>¿Cómo hago para que me envie información de sitios peligrosos a mi e-mail?</h4>
+<p>roba.me cuenta con el servicio de alertas a correos electronicos, para lo cual un usuario debe registrarse e indicar lugares de interés.</p>
+<h4>¿Existe algún pago por el servicio?</h4>
+<p>No, sólo se hizo por la gloria.</p>
+<h4>¿Existe alguna restricción con respecto a la ubicación de zonas en el mapa?</h4>
+<p>Los lugares en los que se indiquen en una denuncia deben estar dentro de la jurisdicción del Perú.</p>
+
+{% endblock %}
